@@ -244,22 +244,22 @@ function App() {
   }, [data]);
 
   // enumerate ids of the layers
-  const toggleableLayerIds = ['cases', 'recovered'];
+  var toggleableLayerIds = ['cases', 'recovered'];
 
   return (
     <div className="App">
       <nav id="menu">
         {toggleableLayerIds.map((item, index) => (
-          <a 
-            className={Classnames({'active': isClicked[index]})}
+          <div
+            className={Classnames('select-layer',{'active': isClicked[index]})}
             key={item}
             onClick={(e) => {
-              const clickedLayer = item;
+              var clickedLayer = item;
               console.log('clickedLayer',clickedLayer)
               e.preventDefault();
               e.stopPropagation();
 
-              const visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+              var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
               let isClickedArr = clone(isClicked);
               // toggle layer visibility by changing the layout object's visibility property
               if (visibility === 'visible') {
@@ -274,7 +274,7 @@ function App() {
             }}
           >
             {item}
-          </a>
+          </div>
         ))}
       </nav>
       <div className="mapContainer">
