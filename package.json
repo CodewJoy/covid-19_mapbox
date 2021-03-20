@@ -9,7 +9,7 @@
     "classnames": "^2.2.6",
     "country-code-lookup": "0.0.19",
     "gh-pages": "^3.1.0",
-    "mapbox-gl": "^2.1.1",
+    "mapbox-gl": "^1.13.0",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
