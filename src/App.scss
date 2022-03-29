@@ -51,7 +51,7 @@
     }
   }
 // add by joy
-#menu {
+  #menu {
     background: #fff;
     position: absolute;
     z-index: 1;
@@ -63,7 +63,7 @@
     font-family: 'Open Sans', sans-serif;
 }
      
-#menu .select-layer {
+#menu a {
     font-size: 13px;
     background-color: #3896be;
     color: #ffffff;
@@ -76,20 +76,20 @@
     text-align: center;
 }
     
-#menu .select-layer:last-child {
+#menu a:last-child {
     border: none;
 }
     
-#menu .select-layer:hover {
+#menu a:hover {
     background-color: #388dbe;
     color: #ffffff;
 }
     
-#menu .select-layer.active {
+#menu a.active {
     background-color: #3887be;
     color: #ffffff;
 }
     
-#menu .select-layer.active:hover {
+#menu a.active:hover {
     background: #3074a4;
 }

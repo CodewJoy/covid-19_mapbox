@@ -54,7 +54,7 @@ function App() {
       );
 
   // Fetching our data with swr package
-  const { data } = useSWR("https://corona.lmao.ninja/v2/jhucsse", fetcher);
+  const { data } = useSWR("https://disease.sh/v3/covid-19/jhucsse", fetcher);
   // Initialize our map
   useEffect(() => {
     if (data) {
@@ -244,22 +244,22 @@ function App() {
   }, [data]);
 
   // enumerate ids of the layers
-  var toggleableLayerIds = ['cases', 'recovered'];
+  const toggleableLayerIds = ['cases', 'recovered'];
 
   return (
     <div className="App">
       <nav id="menu">
         {toggleableLayerIds.map((item, index) => (
-          <div
-            className={Classnames('select-layer',{'active': isClicked[index]})}
+          <a 
+            className={Classnames({'active': isClicked[index]})}
             key={item}
             onClick={(e) => {
-              var clickedLayer = item;
+              const clickedLayer = item;
               console.log('clickedLayer',clickedLayer)
               e.preventDefault();
               e.stopPropagation();
 
-              var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+              const visibility = map.getLayoutProperty(clickedLayer, 'visibility');
               let isClickedArr = clone(isClicked);
               // toggle layer visibility by changing the layout object's visibility property
               if (visibility === 'visible') {
@@ -274,7 +274,7 @@ function App() {
             }}
           >
             {item}
-          </div>
+          </a>
         ))}
       </nav>
       <div className="mapContainer">
