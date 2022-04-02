@@ -8,13 +8,14 @@
     "@testing-library/user-event": "^12.8.1",
     "classnames": "^2.2.6",
     "country-code-lookup": "0.0.19",
-    "mapbox-gl": "^2.1.1",
+    "mapbox-gl": "^1.13.0",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
     "swr": "^0.4.2",
-    "web-vitals": "^1.1.0"
+    "web-vitals": "^1.1.0",
+    "worker-loader": "^3.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
