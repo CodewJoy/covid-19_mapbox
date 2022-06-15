@@ -1,6 +1,6 @@
-export const parseMapboxArr = (maxAmount, inputArr) => {
+export const parseMapboxArr = (maxAmount, inputArr, property) => {
     const level = maxAmount / inputArr.length;
-    let mapboxArr = ["interpolate", ["linear"], ["get", "cases"]];
+    let mapboxArr = ["interpolate", ["linear"], ["get", property]];
     inputArr.forEach((el, index) => {
         mapboxArr.push(level * index);
         mapboxArr.push(el);

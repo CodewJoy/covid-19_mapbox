@@ -7,12 +7,9 @@ mapboxgl.accessToken =
     "pk.eyJ1IjoidHJib3QiLCJhIjoiY2s3NmFscm1xMTV0MDNmcXFyOWp1dGhieSJ9.tR2IMHDqBPOf_AeGjHOKFA";
 
 function Map(props) {
-    const { data, maxAmount, colorArr, radiusArr } = props;
+    const { data, maxAmount, colorArr, radiusArr, layer } = props;
     const mapboxElRef = useRef(null); // DOM element to render map
     const [map, setMap] = useState(null);
-
-    const circleColorArr = parseMapboxArr(maxAmount, colorArr);
-    const circleRadiusArr = parseMapboxArr(maxAmount, radiusArr);
 
     const createMap = () => {
         const map = new mapboxgl.Map({
@@ -44,6 +41,7 @@ function Map(props) {
 
     const createSource = (map, sourceId, geoData) => {
         if (map && !isSourceExist(map, sourceId)) {
+            console.log('geoData', geoData)
             map.addSource(sourceId, {
                 type: "geojson",
                 data: {
@@ -54,7 +52,10 @@ function Map(props) {
         }
     };
 
+    const layers = ["cases", "deaths"];
     const createLayer = (map, layerId, sourceId) => {
+        const circleColorArr = parseMapboxArr(maxAmount[layerId], colorArr[layerId], layerId);
+        const circleRadiusArr = parseMapboxArr(maxAmount[layerId], radiusArr, layerId);
         if (map && !isLayerExist(map, layerId)) {
             map.addLayer({
                 id: layerId,
@@ -77,13 +78,16 @@ function Map(props) {
 
                 console.log('map.getSource("cases")', map.getSource("cases"));
                 // Add our SOURCE
-                createSource(map, "cases", data);
+                createSource(map, "points", data);
+
                 // console.log('map.getSource("cases")', map.getSource("cases"));
 
                 console.log('map.getLayer("cases")', map.getLayer("cases"));
                 // Add our layer
-                createLayer(map, "cases", "cases");
+                layers.forEach((el) => createLayer(map, el, "points"));
                 console.log('map.getLayer("cases")', map.getLayer("cases"));
+                // Set first layer visible, others invisible
+                layers.forEach((el, index) => setLayerVisible(map, el, index === 0));
 
                 const popup = new mapboxgl.Popup({
                     closeButton: false,
@@ -139,6 +143,25 @@ function Map(props) {
             });
         }
     }, [data, map]);
+
+
+    const setLayerVisible = (map, id, visible) => {
+        if (!map || !isLayerExist(map, id)) return;
+        const visibility = visible ? 'visible' : 'none';
+        if (map.getLayoutProperty(id, 'visibility') !== visibility) map.setLayoutProperty(id, 'visibility', visibility);
+    };
+
+    useEffect(() => {
+        if (map) {
+            layers.forEach((el) => {
+                if (layer === el) {
+                    setLayerVisible(map, el, true);
+                } else {
+                    setLayerVisible(map, el, false);
+                }
+            });
+        }
+    }, [layer]);
 
     return (
         <div className="mapContainer">
