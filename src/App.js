@@ -1,39 +1,17 @@
-import React, { useMemo } from "react";
-import useSWR from "swr";
+import React from 'react';
+import useSWR from 'swr';
 import styled from 'styled-components';
-import "./App.scss";
+import './App.scss';
 // Need mapbox css for tooltips later in the tutorial
-import "mapbox-gl/dist/mapbox-gl.css";
-import Map from "./components/Map";
-import Legend from "./components/Legend";
+import 'mapbox-gl/dist/mapbox-gl.css';
+import Map from './components/Map';
+import Legend from './components/Legend';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { parseLegendList } from "./utils";
-
-const colorArr = {
-  cases: [
-    "#ffffb2",
-    "#fed976",
-    "#feb24c",
-    "#fd8d3c",
-    "#fc4e2a",
-    "#e31a1c",
-    "#b10026"
-  ],
-  deaths: [
-    "#f1eef6",
-    "#d4b9da",
-    "#c994c7",
-    "#df65b0",
-    "#e7298a",
-    "#ce1256",
-    "#91003f"
-  ],
-}
-const radiusArr = [1, 10, 20, 30, 40, 50];
+import { parseLegendList, colorArr, radiusArr } from './utils';
 
 const BoxWrapper = styled.div`
   position: absolute;

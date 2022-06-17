@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
-import capitalize from "lodash/capitalize";
+import capitalize from 'lodash/capitalize';
 
 const LegendPanel = styled.div`
   position: absolute;
@@ -14,43 +14,51 @@ const LegendPanel = styled.div`
   .legendTitle {
       font-size: 25px;
       font-weight: bold;
+      margin: 0 0 10px 0;
+      text-align: center;
   }
-  .legendItem {
-    display:flex;
-    align-items: center;
+  .legendSubTitle {
+    font-size: 15px;
+    margin: 0 0 15px 0;
+    text-align: center;
   }
+`;
+const LegendItem = styled.div`
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  height: ${({ width }) => `${width * 5}px`};
 `;
 const LegendColorWrapper = styled.div`
   width: ${({ width }) => `${width * 5}px`};
   display:flex;
   justify-content: center;
-  margin: 5px;
 `;
 const LegendColor = styled.div`
   width: ${({ width }) => `${width * 5}px`};
-  height: ${({ width }) => `${width * 5}px` };
-  background-color: ${({ color }) => color };
+  height: ${({ width }) => `${width * 5}px`};
+  background-color: ${({ color }) => color};
   border: black 1px solid;
   border-radius: 50%;
 `;
 
 function Legend(props) {
-    console.log('props.legendList', props.legendList);
     return (
         <LegendPanel>
              <div className="legendTitle">
                 {capitalize(props.title)}
              </div>
+             <div className="legendSubTitle">World Total Amount</div>
             {
                 props.legendList && props.legendList.map((el, index) => (
-                    <div className="legendItem" key={index}>
-                          <LegendColorWrapper width={props.legendList.length}>
+                    <LegendItem key={index} width={props.legendList.length + 1}>
+                          <LegendColorWrapper width={props.legendList.length + 1}>
                             <LegendColor color={el.color} width={index + 1}/>
                           </LegendColorWrapper> 
                         <div className="legendText">
                             {el.text}
                         </div>
-                    </div>
+                    </LegendItem>
                 ))
             }
         </LegendPanel>

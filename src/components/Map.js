@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
-import mapboxgl from "mapbox-gl";
-import isNil from "lodash/isNil";
-import { parseMapboxArr } from "./../utils";
+import React, { useRef, useEffect, useState } from 'react';
+import mapboxgl from 'mapbox-gl';
+import isNil from 'lodash/isNil';
+import { parseMapboxArr } from './../utils';
 
 mapboxgl.accessToken =
     "pk.eyJ1IjoidHJib3QiLCJhIjoiY2s3NmFscm1xMTV0MDNmcXFyOWp1dGhieSJ9.tR2IMHDqBPOf_AeGjHOKFA";
