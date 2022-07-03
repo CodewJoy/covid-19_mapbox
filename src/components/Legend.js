@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import capitalize from 'lodash/capitalize';
+import { capitalize } from 'lodash-es';
 
 const LegendPanel = styled.div`
   position: absolute;
