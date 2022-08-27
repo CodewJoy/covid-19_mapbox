@@ -10,7 +10,6 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.1",
     "classnames": "^2.2.6",
-    "country-code-lookup": "0.0.19",
     "lodash-es": "^4.17.21",
     "mapbox-gl": "^1.13.0",
     "node-sass": "^5.0.0",
