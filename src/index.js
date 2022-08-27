@@ -1,16 +1,12 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const ControlPanelContext = createContext();
-
 ReactDOM.render(
   <React.StrictMode>
-    {/* <ControlPanelContext.Provider value={}> */}
     <App />
-    {/* </ControlPanelContext.Provider> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
