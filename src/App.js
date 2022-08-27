@@ -1,27 +1,12 @@
 import React, { useState } from 'react';
 import useSWR from 'swr';
-import styled from 'styled-components';
 import './App.scss';
 // Need mapbox css for tooltips later in the tutorial
 import 'mapbox-gl/dist/mapbox-gl.css';
+import Control from './components/Control';
 import Map from './components/Map';
 import Legend from './components/Legend';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import { parseLegendList, colorArr, radiusArr } from './utils';
-
-const BoxWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 10px;
-  z-index: 1;
-  background-color: white;
-  border-radius: 4px;
-`;
 
 function App() {
   const [layer, setLayer] = useState("cases");
@@ -64,24 +49,11 @@ function App() {
   };
 
   return (
-    <div className="App">     
-      <BoxWrapper>
-        <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Layer</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={layer}
-              label="Layer"
-              onChange={handleChange}
-            >
-              <MenuItem value={"cases"}>Cases</MenuItem>
-              <MenuItem value={"deaths"}>Deaths</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-      </BoxWrapper>
+    <div className="App">
+      <Control
+        layer={layer}
+        handleChange={handleChange}
+      />
       <Map
         data={data}
         maxAmount={maxAmount}
@@ -91,8 +63,8 @@ function App() {
       />
       <Legend
         title={layer}
-        legendList={legendList && legendList[layer]} 
-        />
+        legendList={legendList && legendList[layer]}
+      />
     </div>
   );
 }
