@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useSWR from 'swr';
 import styled from 'styled-components';
 import './App.scss';
@@ -24,6 +24,7 @@ const BoxWrapper = styled.div`
 `;
 
 function App() {
+  const [layer, setLayer] = useState("cases");
   const fetcher = (url) =>
     fetch(url)
       .then((r) => r.json())
@@ -53,14 +54,11 @@ function App() {
     cases: Math.max(...data.map((item) => item.properties.cases)),
     deaths: Math.max(...data.map((item) => item.properties.deaths)),
   };
-  console.log('maxAmount', maxAmount)
-  const [layer, setLayer] = React.useState("cases");
   const legendList = maxAmount && {
     cases: parseLegendList(maxAmount["cases"], colorArr["cases"]),
     deaths: parseLegendList(maxAmount["deaths"], colorArr["deaths"]),
   };
 
-  console.log('legendList', legendList)
   const handleChange = (event) => {
     setLayer(event.target.value);
   };

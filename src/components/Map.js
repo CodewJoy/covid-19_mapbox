@@ -41,7 +41,6 @@ function Map(props) {
 
     const createSource = (map, sourceId, geoData) => {
         if (map && !isSourceExist(map, sourceId)) {
-            console.log('geoData', geoData)
             map.addSource(sourceId, {
                 type: "geojson",
                 data: {
@@ -133,22 +132,13 @@ function Map(props) {
 
     useEffect(() => {
         if (data && map) {
-            console.log("data", data);
             map.once("load", () => {
-
-                console.log('map.getSource("cases")', map.getSource("cases"));
                 // Add our SOURCE
                 createSource(map, "points", data);
-
-                // console.log('map.getSource("cases")', map.getSource("cases"));
-
-                console.log('map.getLayer("cases")', map.getLayer("cases"));
                 // Add our layer
                 layers.forEach((el) => createLayer(map, el, "points"));
-                console.log('map.getLayer("cases")', map.getLayer("cases"));
                 // Set first layer visible, others invisible
                 layers.forEach((el, index) => setLayerVisible(map, el, index === 0));
-
                 layers.forEach((el) => generateLayerTooltip(map, el));
             });
         }
