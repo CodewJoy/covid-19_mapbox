@@ -4,7 +4,7 @@ import { isNil } from 'lodash-es';
 import { parseMapboxArr } from './../utils';
 
 mapboxgl.accessToken =
-    "pk.eyJ1IjoidHJib3QiLCJhIjoiY2s3NmFscm1xMTV0MDNmcXFyOWp1dGhieSJ9.tR2IMHDqBPOf_AeGjHOKFA";
+    "pk.eyJ1IjoiY29kZXdqb3kiLCJhIjoiY2xlenE0dnE2MDFueTNycDJrMnc5Y2twcCJ9.p7bcH7fkoTbnOYDRUyGVsw";
 
 function Map(props) {
     const { data, maxAmount, colorArr, radiusArr, layer } = props;
