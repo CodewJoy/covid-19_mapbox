@@ -1,5 +1,5 @@
 # Create a COVID-19 map with React and Mapbox
-[Demo Link](https://covid-19-mapbox-git-main-codewjoy.vercel.app/)
+[Demo Link](https://codewjoy.github.io/covid-19_mapbox/)
 
 ![](https://i.imgur.com/bBADKuV.gif)
 

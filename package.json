@@ -1,6 +1,6 @@
 {
   "name": "mapbox-covid",
-  "homepage": "https://github.com/CodewJoy/covid-19_mapbox",
+  "homepage": "https://CodewJoy.github.io/covid-19_mapbox",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
