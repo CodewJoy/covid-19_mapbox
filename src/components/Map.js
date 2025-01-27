@@ -6,33 +6,34 @@ import { parseMapboxArr } from "./../utils";
 mapboxgl.accessToken =
   "pk.eyJ1IjoiY29kZXdqb3kiLCJhIjoiY2xlenE0dnE2MDFueTNycDJrMnc5Y2twcCJ9.p7bcH7fkoTbnOYDRUyGVsw";
 
+const layers = ["cases", "deaths", "recovered"];
+
 function Map(props) {
   const { data, maxAmount, colorArr, radiusArr, layer } = props;
   const mapboxElRef = useRef(null); // DOM element to render map
   const [map, setMap] = useState(null);
 
-  const createMap = () => {
-    const map = new mapboxgl.Map({
-      container: mapboxElRef.current,
-      style: "mapbox://styles/notalemesa/ck8dqwdum09ju1ioj65e3ql3k",
-      center: [16, 27], // initial geo location
-      zoom: 2, // initial zoom
-    });
-
-    // Add navigation controls to the top right of the canvas
-    map.addControl(new mapboxgl.NavigationControl());
-
-    // Add navigation to center the map on your geo location
-    map.addControl(
-      new mapboxgl.GeolocateControl({
-        fitBoundsOptions: { maxZoom: 6 },
-      })
-    );
-    setMap(map);
-  };
-
   // Initialize our map
   useEffect(() => {
+    const createMap = () => {
+      const map = new mapboxgl.Map({
+        container: mapboxElRef.current,
+        style: "mapbox://styles/notalemesa/ck8dqwdum09ju1ioj65e3ql3k",
+        center: [16, 27], // initial geo location
+        zoom: 2, // initial zoom
+      });
+  
+      // Add navigation controls to the top right of the canvas
+      map.addControl(new mapboxgl.NavigationControl());
+  
+      // Add navigation to center the map on your geo location
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          fitBoundsOptions: { maxZoom: 6 },
+        })
+      );
+      setMap(map);
+    };
     createMap();
   }, []);
 
@@ -51,7 +52,6 @@ function Map(props) {
     }
   };
 
-  const layers = ["cases", "deaths", "recovered"];
   const createLayer = (map, layerId, sourceId) => {
     const circleColorArr = parseMapboxArr(
       maxAmount[layerId],
